@@ -11,11 +11,7 @@ ReactDOM.render(
     <React.StrictMode>
       <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Provider store={store}>
-          <BrowserRouter>
-            <Suspense fallback={<div>Loading...</div>}>
               <App/>
-            </Suspense>
-          </BrowserRouter>
         </Provider>
       </BrowserRouter>
     </React.StrictMode>,
