@@ -1,27 +1,19 @@
 import './App.css';
-import {Redirect, Route, Switch, useHistory} from "react-router-dom";
+import {Redirect, Route, Switch} from "react-router-dom";
 import Main from "./components/Main";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Login from "./components/Login";
-import {useDispatch, useSelector} from "react-redux";
-import {setLoggedIn, setUserLogin} from "./redux/store";
+import {useSelector} from "react-redux";
+
 
 function App() {
   const loggedIn = useSelector(state => state.loggedIn);
-  const history = useHistory();
-  const dispatch = useDispatch()
-
-  function checkData(login) {
-      dispatch(setLoggedIn(true))
-      dispatch(setUserLogin(login))
-      history.push('/profile');
-  }
 
   return (
       <div className="App">
         <Switch>
           <Route exact path="/">
-            <Login handleData={checkData}/>
+            <Login/>
           </Route>
           <ProtectedRoute
               loggedIn={loggedIn}

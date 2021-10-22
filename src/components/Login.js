@@ -1,15 +1,19 @@
 import React, {useEffect, useState} from 'react';
 import styles from '../blocks/Login.module.css'
 import cn from 'classnames';
+import {setLoggedIn, setUserLogin} from "../redux/store";
+import {useHistory} from "react-router-dom";
+import {useDispatch} from "react-redux";
 
 
-const Login = ({handleData}) => {
+const Login = () => {
   const trueLogin = 'developer21';
   const truePassword = '123456';
   const [disabled, setDisabled] = useState(true);
-
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
+  const history = useHistory();
+  const dispatch = useDispatch()
 
   useEffect(() => {
     if (login.toString() === trueLogin && password.toString() === truePassword) {
@@ -20,19 +24,19 @@ const Login = ({handleData}) => {
     };
   }, [login, password]);
 
-
   function handleSubmit(e) {
     e.preventDefault()
-    handleData(login)
+    dispatch(setLoggedIn(true))
+    dispatch(setUserLogin(login))
+    history.push('/profile');
   }
-
 
   return (
       <div className={styles.login__wrapper} onSubmit={handleSubmit}>
         <form className={styles.login__form}>
           <h4 className={styles.login__form_title}>Вход</h4>
           <input type="text" className={styles.login__form_input}
-                 placeholder='Введите email'
+                 placeholder='Введите login'
                  value={login || ''}
                  onChange={event => setLogin(event.target.value)}
           />
