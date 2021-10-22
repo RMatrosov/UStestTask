@@ -50,10 +50,7 @@
 }
 
 .disabled{
-    color: #fff;
     background-color: #c8d7e6;
     border-color: #b4c0d1;
-    width: 290px;
-    height: 50px;
     cursor: default;
 }
