@@ -1,19 +1,29 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from '../blocks/Login.module.css'
+import cn from 'classnames';
 
 
 const Login = ({handleData}) => {
+  const trueLogin = 'developer21';
+  const truePassword = '123456';
+  const [disabled, setDisabled] = useState(true);
 
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
 
+  useEffect(() => {
+    if (login.toString() === trueLogin && password.toString() === truePassword) {
+      setDisabled(false)
+    }
+    return () => {
+      setDisabled(true)
+    };
+  }, [login, password]);
+
+
   function handleSubmit(e) {
     e.preventDefault()
-    if (login !== '' && password !== '') {
-      handleData(login, password)
-    } else {
-      alert('Заполните поле email и password')
-    }
+    handleData(login)
   }
 
 
@@ -31,7 +41,12 @@ const Login = ({handleData}) => {
                  value={password || ''}
                  onChange={event => setPassword(event.target.value)}
           />
-          <button type='submit' className={styles.login__form_button}>Войти</button>
+          <button type='submit' className={cn(styles.login__form_button, {
+            [styles.disabled]: disabled === true
+          })}
+                  disabled={disabled}
+          >Войти
+          </button>
         </form>
       </div>
   );

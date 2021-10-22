@@ -49,8 +49,10 @@
     cursor: pointer;
 }
 
-.login__form_button:hover {
+.disabled{
     color: #fff;
-    background-color: #3c8bdf;
-    border-color: #3c8bdf;
+    background-color: #c8d7e6;
+    border-color: #b4c0d1;
+    width: 290px;
+    height: 50px;
 }

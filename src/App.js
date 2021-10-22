@@ -7,20 +7,14 @@ import {useDispatch, useSelector} from "react-redux";
 import {setLoggedIn, setUserLogin} from "./redux/store";
 
 function App() {
-  const trueLogin = 'developer21';
-  const truePassword = '123456';
   const loggedIn = useSelector(state => state.loggedIn);
   const history = useHistory();
   const dispatch = useDispatch()
 
-  function checkData(login, password) {
-    if (login.toString() === trueLogin && password.toString() === truePassword) {
+  function checkData(login) {
       dispatch(setLoggedIn(true))
       dispatch(setUserLogin(login))
       history.push('/profile');
-    }else {
-      alert('Введен не верный логин или пароль')
-    }
   }
 
   return (
